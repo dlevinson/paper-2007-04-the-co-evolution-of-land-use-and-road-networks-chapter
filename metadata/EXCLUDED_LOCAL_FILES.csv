@@ -1,0 +1,7 @@
+source_path,category,reason,count,bytes
+/Users/dlev2617/Documents/Software/Signal1.8.1/signal1.8.0-*.txt,generated_outputs,"Large SIGNAL run outputs are generated results, not required inputs; package includes source and model inputs instead.",50,319539725
+/Users/dlev2617/Documents/Software/Signal1.8.1/*.class,derived_compiled_classes,Original 2006 class files are derivative of included Java source. A compact 2021 jar/exe wrapper is included separately.,21,138687
+/Users/dlev2617/Documents/Papers/~05-Published/ISTTT Conference/ISTTT07-Coevolution,drafts_and_formatted_paper_versions,Drafts/formatted manuscript working files are not data/code assets.,10,26236250
+/Users/dlev2617/Documents/Papers/~05-Published/ISTTT Conference/ISTTT07-Coevolution,admin_and_conference_material,"Agreements, templates, and conference logistics are not data/code assets.",5,451023
+/Users/dlev2617/Documents/Papers/~05-Published/ISTTT Conference/ISTTT07-Coevolution,presentations_and_figure_exports,Presentation decks and figure/image exports are not the underlying code/input archive for this package.,8,44113818
+/Users/dlev2617/Documents/Papers/~05-Published/ISTTT Conference/ISTTT07-Coevolution,auxiliary_spreadsheet,Simple supporting spreadsheet was noted but not staged because the SIGNAL source/input package is the direct executable archive boundary for this paper.,1,127488

@@ -1,0 +1,237 @@
+///2004
+
+Jun17
+try new degeneration and stopping rules (see Memo (June 17).doc)
+
+estimate the difference of consumer's surplus, supplier's surplus or total social benefit between the network with a given link
+and that without the link. The link is killed when maintaining this link becomes less beneficial than killing it.
+
+The degeneration process is stopped when no link is qualified to be killed
+
+change the range of v6 (value of time) to 
+
+
+Month-day-year;
+No-of-experiments;
+Experiment-No	Network-Type	minspeed	maxspeed	minlanduse	maxlanduse	killingrule	stoppingrule parameter
+...
+...
+
+
+kill percentage of links whose speeds are below minimal speed
+Month-day-year;
+No-of-experiments;
+Experiment-No	Network-Type	minspeed	maxspeed	minlanduse	maxlanduse	killingrule	stoppingrule parameter1 parameter2
+...
+...
+
+
+Jun29
+1. I will refine the interface
+2. now vht,cost are output as NaN, I will fix it
+3. summary and ruplicate the experiments that have been conducted
+4. Examine the relationship between connection patterns and welfare and MOEs
+
+
+1. interface: variables 2,23-29 have been changed
+				variables[0] = (float) 5;	//speedmin
+				variables[1] = (float) 5;	//speedmax
+				variables[2] = (float) 10;  /////land use range
+				variables[3] = (float) 10;	//landmin
+				variables[4] = (float) 10;	//landmax
+				variables[5] = (float) 0.0;   // downtown?
+				variables[6] = (float) 0.65;		//volue of time
+				variables[7] = (float) 1.0;		//tax rate
+				variables[8] = (float) 1.0;		//length rate
+				variables[9] = (float) 0.0;		//speed rate
+				variables[10] = (float) 0.01;	//friction factor
+				variables[11] = (float) 1;	//symmetry?
+				variables[12] = (float) 1;	//avg speed?
+				variables[13] = (float) 1.0; //tax rate(toll rate)
+				variables[14] = (float) 1.0; //length
+				variables[15] = (float) 0;	//speed
+				variables[16] = (float) 365;	//cost rate
+				variables[17] = (float) 1.0;	//length coefficient
+				variables[18] = (float) 0.75;	//flow coefficient
+				variables[19] = (float) 0.75;	// speed coefficient
+				variables[20] = (float) 1.0;	//speed reduction factor
+				variables[21] = (float) 0;	//X
+				variables[22] = (float) 50;	//time period
+				variables[23] =(float)0;//killing rule
+				variables[24] =(float)0;//stopping rule
+				variables[25] =(float)0.05;//killing rule parameter
+				variables[26] = (float)0.5; //walking speed
+				variables[28] = (float)0; //land use allocation limited to original nodes or not
+				variables[29] = (float)1; //delay or not
+3*3 Number of edges: 232
+4*4 Number of edges: 2520
+4*4 Number of edges: 14096			
+			
+Month-day-year;
+No-of-experiments;
+Experiment-No timeperiod Network-Type minspeed	maxspeed	minlanduse	maxlanduse	killingrule	stoppingrule killruleparameter vot limit delay walkingspeed
+...
+...			
+		
+Month-day-year;
+No-of-experiments;
+Experiment-No timeperiod Network-Type minspeed	maxspeed	minlanduse	maxlanduse	killingrule	stoppingrule killruleparameter vot limit delay walkingspeed taxrate lenghcoeff speed coeff
+...
+...			
+
+July 27th
+Grid_4.txt Grid_4.txt Grid_4.txt have been replaced cause previous files give us some nodes and some of their endnodes have the same node number! which causes
+a problem in killing rule algorithm.
+
+Aug 1st new try
+1. Redefine network welfare
+2. Modify the investment models so that we can observe a peak as network grows
+3. set up a degeneration rule to improve the welfare when it drops.
+
+I think variables7-9 are equal to variables13-15 respectively,so why not use one group?
+replacing taxrate,lengthrate and speedrate in Dijkstra.java with tax, coeffLength and coeffSpeed
+
+Can you believe that? the total trips are increasing steadily! I must fix it!
+Now the total volumes are still increasing steadily. Why? there must be something wrong.
+
+
+Batch:
+time periods	network	speedmin	speedmax	landmin	landmax	killingrule	stoppingrule	killingparametere	vot	limit	startyear	walkingspeed	taxrate 	lenghcoeff	 speedcoeff
+
+
+Aug 12
+>the problems have been fixed.
+>Aug-12-21 to Aug-12-25 got pretty good results.
+>The task is to physically delete(instead of assigning the degenerate link a walking speed) degenerate links and to explore possible topologies.
+ Meanwhile, we should make sure each node is connected to the whole network.
+
+
+Sep 8th
+
+physically deleting links has been realized (Memo Sep 1st)
+the following experiments are designed for the NARSC conference paper
+
+on 4*4 and 5*5 complete networks
+
+1.initial conditions (symmetric, asymmetric)
+2.killing rule:
+	candidates (revenue-cost ratio is no bigger than 1.0) (1 by 1, 4 by 4?)
+3.stopping rule:
+	no links can be deleted from the network
+	maximal welfare
+	
+	
+Sep 12th
+1.welfare is observed using the new degeneration model (Memo Sep 8)
+2.the experiments show that physically deleting links will not increase the welfare
+3.after discussion with the advisor, we decide to incorporate the fixed operating cost (only relevant to the length of links)
+into the general cost of links.  Since a degenerate  link requires no operating cost, deleting a link may increase the network
+welfare compared to the growth model then. 
+
+
+Sep 17th
+Sep 23th
+1.network welfare is calculated by adding consumers' surplus(O-D pair) to links' profits(link)
+2. A fixed maintenance cost is added, only related to link length
+	so profit=revenue-fixedcost-variablecost
+3. The link speed is updated according to
+	Pow((Revenue-FixedCost)/Variable Cost, speedReductionFactor)
+
+
+
+Sep 30th
+see Memo(Sep30).doc
+1. model the original nodes (first-class nodes) as buildings,or something like that, which are nonerasiable.  the potential (second-class) nodes can be deleted
+during the degeneration process.  So, the killing criterion to be developed is that a second-class node will be deleted if no links are
+connected to it; but once a node is existing, it must be connected to other existing nodes; a link can be killed only if the network is 
+still fully connected after killing it.
+2. we will use the faster shortest-path finding algorithm in any case.
+3. Killing link one at a time and kill the weakest link first
+
+Oct15
+1. the new killing criteria specified in Memo(2004Oct8) has been realized
+2. the only problem remaining is:
+	now we need to calculate consumers' surplus based on land use cell--land use cell
+
+Oct24
+run 10*10 out of memory???
+
+
+Dec17
+try 5*5 degeneration network
+
+///2005////
+Jan02 many links have the same minimal speed before degeneration. instead of killing the link with the smallest 
+start node number, we will randomly select and kill a link
+
+
+
+Jan16
+change "Batch" command so that input file name can be directly read.
+
+not-completely connected networks
+
+fixed the problem that speeds of all links drop to 0.01 at the first round of degeneration, on 5*5 complete and 10*10 not complete networks
+
+
+Jan25 Feb1
+add calculation of accessibility and welfare
+
+improve the button panel
+
+
+Feb10
+allow original nodes to be killed
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			
