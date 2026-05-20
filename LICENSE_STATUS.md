@@ -1,6 +1,6 @@
 # License Status: The Co-Evolution Of Land Use And Road Networks (Chapter)
 
-Generated: 2026-05-20 14:46:37 AEST
+Generated: 2026-05-20 15:23:47 AEST
 
 Recorded license/access note from the verified audit row: No explicit source-code license found in local SIGNAL folder; add a repository license before public GitHub release.
 
