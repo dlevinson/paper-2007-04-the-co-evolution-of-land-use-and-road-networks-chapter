@@ -17,7 +17,7 @@ This chapter introduces SIGNAL, an integrated simulation in which accessibility,
 
 This package is intended for `UPLOADED`. The paper is simulation/model based and does not use human-subjects microdata. The package now includes the local SIGNAL model source and compact input/configuration files that logically match the paper's described simulator.
 
-Before public GitHub release, add an explicit source-code license. No privacy restriction was found in the staged source or model-input files.
+The author-created source code is released under MIT, with the remaining asset boundaries documented in `LICENSE.md`. No privacy restriction was found in the staged source or model-input files.
 
 ## Package Contents
 
@@ -53,5 +53,11 @@ Generated: 2026-05-21 20:04:48 AEST
 - Pipeline: `UPLOADED`
 - Sidecars added/updated: `PACKAGE_STATUS.md`, `PACKAGE_MANIFEST.csv`, `LICENSE_STATUS.md`.
 - Paper reference copies are for local audit convenience and are not public-upload assets without rights review.
-- Final GitHub upload should use the manifest include statuses and the license-status note.
+- The repository license boundary is recorded in `LICENSE.md`.
 <!-- package-hardening-status:end -->
+
+## License
+
+See `LICENSE.md`. Author-created SIGNAL code is MIT licensed; author-created
+model inputs and documentation are CC BY 4.0. Papers and third-party materials
+retain their original terms.
