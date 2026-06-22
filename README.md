@@ -1,5 +1,9 @@
 # The Co-Evolution Of Land Use And Road Networks
 
+## Contribution
+
+This chapter introduces SIGNAL, an integrated simulation in which accessibility, travel demand, land development, and road investment evolve together. Grid experiments demonstrate how decentralized network changes and location decisions generate urban form, network structure, inequality, and spatial expansion as mutually dependent outcomes.
+
 ## Bibliographic Information
 
 - Row ID: `paper-2007-04`
